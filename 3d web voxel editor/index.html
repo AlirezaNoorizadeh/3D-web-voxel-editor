@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Web Voxel Editor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css"> <!-- لینک به فایل CSS -->
+</head>
+<body>
+    <div id="container">
+        <div id="controls">
+            <div id="controls-header">
+                <h3 id="controls-main-title" class="text-lg font-semibold"></h3>
+                <span id="controls-toggle">▾</span> </div>
+            <div id="controls-content">
+                <div class="control-group">
+                    <button id="language-toggle-button" class="action-button bg-purple-500 hover:bg-purple-600 text-white w-full mb-1.5 text-xs"></button>
+                    <button id="dark-mode-toggle-button" class="action-button bg-gray-700 hover:bg-gray-800 text-white w-full text-xs"></button>
+                </div>
+                <div class="control-group">
+                    <h4 id="controls-title-colors"></h4>
+                    <h5 id="default-colors-title" class="text-xs font-medium mt-1 mb-0.5 text-gray-500"></h5>
+                    <div id="default-color-palette" class="grid grid-cols-5 gap-1.5 mb-2">
+                        </div>
+                    <h5 id="custom-colors-title" class="text-xs font-medium mt-2 mb-0.5 text-gray-500"></h5>
+                    <div id="custom-color-palette" class="grid grid-cols-5 gap-1.5 mb-2">
+                        </div>
+                    <div class="flex items-center mt-1">
+                        <input type="color" id="custom-color-input" value="#ff0000">
+                        <button id="add-custom-color-button" class="action-button bg-teal-500 hover:bg-teal-600 text-white text-xs"></button>
+                    </div>
+                </div>
+                 <div class="control-group">
+                    <h4 id="grid-size-title"></h4>
+                    <div class="flex">
+                        <input type="number" id="grid-size-input" value="20" min="10" max="50" class="text-sm">
+                        <button id="apply-grid-size-button" class="action-button bg-indigo-500 hover:bg-indigo-600 text-white"></button>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <h4 id="operations-title"></h4>
+                    <button id="copy-selected-button" class="action-button bg-blue-500 hover:bg-blue-600 text-white w-full mb-1.5"></button>
+                    <button id="delete-selected-button" class="action-button bg-red-500 hover:bg-red-600 text-white w-full mb-1.5"></button>
+                    <button id="undo-button" class="action-button bg-yellow-500 hover:bg-yellow-600 text-black w-full mb-1.5"></button>
+                    <button id="redo-button" class="action-button bg-green-500 hover:bg-green-600 text-white w-full mb-1.5"></button>
+                    <button id="clear-all-button" class="action-button bg-gray-700 hover:bg-gray-800 text-white w-full"></button>
+                </div>
+                <div class="control-group">
+                    <h4 id="import-export-title"></h4>
+                    <button id="export-obj-button" class="action-button bg-cyan-500 hover:bg-cyan-600 text-white w-full mb-1.5"></button>
+                    <button id="export-json-button" class="action-button bg-cyan-500 hover:bg-cyan-600 text-white w-full mb-1.5"></button>
+                    <input type="file" id="import-json-input" accept=".json" style="display: none;">
+                    <button id="import-json-button" class="action-button bg-cyan-500 hover:bg-cyan-600 text-white w-full"></button>
+                </div>
+            </div>
+        </div>
+
+        <div id="canvas-container">
+            </div>
+
+        <div id="instructions">
+            <div id="instructions-header">
+                <h4 id="instructions-main-title" class="font-semibold"></h4>
+                <span id="instructions-toggle">▾</span> </div>
+            <div id="instructions-content">
+                </div>
+        </div>
+    </div>
+
+    <div id="message-box">
+        <p id="message-text"></p>
+        <button id="message-ok-button"></button>
+    </div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+    <script src="script.js" type="module"></script>
+</body>
+</html> 

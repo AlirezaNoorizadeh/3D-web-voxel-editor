@@ -1,0 +1,287 @@
+        body { margin: 0; overflow: hidden; font-family: 'Inter', sans-serif, 'Tahoma'; /* Default direction set by JS */ }
+        #container { width: 100vw; height: 100vh; display: flex; flex-direction: column; }
+        #canvas-container { flex-grow: 1; position: relative; }
+        canvas { display: block; }
+        #controls {
+            position: absolute;
+            top: 10px;
+            /* left/right positioning handled by JS based on language */
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 10px; /* Reduced padding for the main wrapper */
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 5px; /* Reduced gap for tighter header */
+            width: 240px; 
+        }
+        #controls-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 5px; /* Padding for header */
+        }
+        #controls-main-title { font-weight: 600; font-size: 1em; color: #1f2937; }
+        #controls-toggle { font-size: 1.2em; /* margin handled by JS */ }
+
+        #controls-content {
+            max-height: calc(100vh - 120px); /* Adjust max-height as needed, considering other elements */
+            overflow-y: auto;
+            padding: 0 5px 5px 5px; /* Padding for content area */
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, padding 0.3s ease-in-out;
+            scrollbar-width: thin; /* For Firefox */
+            scrollbar-color: #a0aec0 #f1f3f5; 
+        }
+        #controls-content.collapsed {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            padding-top: 0;
+            padding-bottom: 0;
+            margin-top: -5px; 
+        }
+        /* Webkit scrollbar styling for controls */
+        #controls-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        #controls-content::-webkit-scrollbar-track {
+            background: #f1f3f5; 
+            border-radius: 10px;
+        }
+        #controls-content::-webkit-scrollbar-thumb {
+            background: #cbd5e0; 
+            border-radius: 10px;
+        }
+        #controls-content::-webkit-scrollbar-thumb:hover {
+            background: #a0aec0; 
+        }
+
+
+        .control-group { margin-bottom: 8px; }
+        .control-group h4 { font-weight: 600; margin-bottom: 4px; font-size: 0.95em; color: #374151;}
+        .control-group h5 { font-size: 0.8em; font-weight: 500; margin-top: 6px; margin-bottom: 3px; color: #4b5563;}
+
+        #default-color-palette, #custom-color-palette {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr)); 
+            gap: 8px; 
+            padding-top: 4px; 
+        }
+
+        .custom-color-item-wrapper {
+            position: relative; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 28px; 
+            height: 28px;
+        }
+
+        .color-button {
+            width: 28px;
+            height: 28px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: transform 0.1s ease-out;
+            flex-shrink: 0; 
+        }
+        .color-button:hover {
+            transform: scale(1.1);
+            border-color: #9ca3af;
+        }
+        .color-button.active {
+            border: 2px solid #1f2937;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); 
+        }
+        .remove-color-button {
+            position: absolute;
+            top: -6px;   
+            /* left/right for remove button handled by JS based on language */
+            width: 16px;
+            height: 16px;
+            font-size: 10px;
+            line-height: 14px; 
+            text-align: center;
+            background-color: #ef4444; 
+            color: white;
+            border: none;
+            border-radius: 50%; 
+            cursor: pointer;
+            display: flex; 
+            align-items: center;
+            justify-content: center;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+            z-index: 1; 
+        }
+        .remove-color-button:hover {
+            opacity: 1;
+        }
+
+        .action-button {
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 0.85em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+            border: 1px solid transparent;
+        }
+        .action-button:hover { filter: brightness(90%); }
+        #grid-size-input {
+            width: calc(100% - 70px); 
+            padding: 5px 8px;
+            border-radius: 4px;
+            border: 1px solid #d1d5db;
+            /* margin for input handled by JS */
+        }
+        #apply-grid-size-button {
+            width: 65px; 
+        }
+        #custom-color-input {
+            width: 40px; 
+            height: 28px;
+            padding: 2px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #add-custom-color-button {
+            flex-grow: 1;
+             /* margin for button handled by JS */
+        }
+
+
+        #instructions {
+            position: absolute;
+            bottom: 10px;
+            /* left/right positioning handled by JS based on language */
+            background-color: rgba(255, 255, 255, 0.85); 
+            color: #374151; 
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.85em;
+            /* text-align handled by JS */
+            max-width: 448px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15); 
+        }
+        #instructions-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: 5px;
+        }
+        #instructions-toggle {
+            font-size: 1.2em;
+            /* margin for toggle handled by JS */
+        }
+        #instructions-content {
+            max-height: 200px; 
+            overflow-y: auto;
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            scrollbar-width: thin; /* For Firefox */
+            scrollbar-color: #a0aec0 #f1f3f5; 
+        }
+        #instructions-content.collapsed {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            margin-top: -5px; 
+        }
+         /* Webkit scrollbar styling for instructions */
+        #instructions-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        #instructions-content::-webkit-scrollbar-track {
+            background: #f1f3f5; 
+            border-radius: 10px;
+        }
+        #instructions-content::-webkit-scrollbar-thumb {
+            background: #cbd5e0; 
+            border-radius: 10px;
+        }
+        #instructions-content::-webkit-scrollbar-thumb:hover {
+            background: #a0aec0; 
+        }
+
+
+        #message-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #2d3748; 
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: none; 
+            text-align: center;
+            min-width: 300px;
+        }
+        #message-box button { 
+            background-color: #4a5568; 
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.2s;
+        }
+         #message-box button:hover { background-color: #2c3e50; } 
+
+        /* Dark Mode Styles */
+        body.dark-mode { background-color: #1a202c; color: #e2e8f0; }
+        body.dark-mode #controls { background-color: rgba(45, 55, 72, 0.9); box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
+        body.dark-mode #controls-main-title { color: #e2e8f0; }
+        body.dark-mode #controls-toggle { color: #e2e8f0; }
+        body.dark-mode .control-group h4 { color: #cbd5e0; }
+        body.dark-mode .control-group h5 { color: #a0aec0; }
+        body.dark-mode .color-button { border-color: #4a5568; }
+        body.dark-mode .color-button.active { border-color: #e2e8f0; box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.6); }
+        body.dark-mode #grid-size-input, body.dark-mode #custom-color-input { background-color: #2d3748; border-color: #4a5568; color: #e2e8f0; }
+        body.dark-mode #custom-color-input::-webkit-color-swatch-wrapper { padding: 0; } 
+        body.dark-mode #custom-color-input::-webkit-color-swatch { border: none; }
+
+        body.dark-mode #instructions { 
+            background-color: rgba(45, 55, 72, 0.9); 
+            color: #cbd5e0; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5); 
+        }
+        body.dark-mode #instructions-header h4 { color: #cbd5e0; } 
+        body.dark-mode #instructions-toggle { color: #cbd5e0; } 
+        body.dark-mode #instructions-content p, body.dark-mode #instructions-content strong { color: #cbd5e0; } 
+        body.dark-mode #instructions-content { scrollbar-color: #4a5568 #2d3748; } 
+        body.dark-mode #instructions-content::-webkit-scrollbar-track { background: #2d3748; } 
+        body.dark-mode #instructions-content::-webkit-scrollbar-thumb { background: #4a5568; } 
+        body.dark-mode #instructions-content::-webkit-scrollbar-thumb:hover { background: #718096; }
+
+
+        body.dark-mode #controls-content { scrollbar-color: #4a5568 #2d3748; } 
+        body.dark-mode #controls-content::-webkit-scrollbar-track { background: #2d3748; } 
+        body.dark-mode #controls-content::-webkit-scrollbar-thumb { background: #4a5568; } 
+        body.dark-mode #controls-content::-webkit-scrollbar-thumb:hover { background: #718096; }
+
+
+        body.dark-mode #message-box { background-color: #1a202c; box-shadow: 0 10px 25px rgba(0,0,0,0.7); }
+        body.dark-mode #message-box button { background-color: #4a5568; }
+        body.dark-mode #message-box button:hover { background-color: #718096; }
+
+        body.dark-mode #language-toggle-button { background-color: #6b46c1; hover:bg-purple-700 } 
+        body.dark-mode #add-custom-color-button { background-color: #2c7a7b; hover:bg-teal-700 } 
+        body.dark-mode #apply-grid-size-button { background-color: #5a67d8; hover:bg-indigo-700 } 
+        body.dark-mode #copy-selected-button { background-color: #3182ce; hover:bg-blue-700 } 
+        body.dark-mode #delete-selected-button { background-color: #c53030; hover:bg-red-700 } 
+        body.dark-mode #undo-button { background-color: #d69e2e; color: #1a202c; hover:bg-yellow-700 } 
+        body.dark-mode #redo-button { background-color: #38a169; hover:bg-green-700 } 
+        body.dark-mode #clear-all-button { background-color: #4a5568; hover:bg-gray-700 } 
+        body.dark-mode #dark-mode-toggle-button { background-color: #a0aec0; color: #1a202c; hover:bg-gray-500 } 

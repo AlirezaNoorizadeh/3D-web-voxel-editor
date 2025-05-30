@@ -1,157 +1,129 @@
 # 3D Web Voxel Editor
 
-This project is a browser-based 3D voxel editor built with Three.js that allows users to create and manipulate voxel models in a 3D space. It provides intuitive controls for building, selecting, and modifying voxel structures with various colors and grid sizes.
+A modular 3D voxel modeling tool built with Three.js, featuring a clean separation of concerns with HTML, CSS, and JavaScript files. The editor defaults to English language interface and dark mode theme.
 
 ---
 
-## 🚀 How to Use the Editor
+## 🚀 Getting Started
 
-### 1. Access the Editor
-Simply open the HTML file in any modern web browser:
-```bash
-open 3d_web_voxel_editor.html
+### Project Structure
+```
+voxel-editor/
+├── index.html      # Main application structure
+├── style.css       # All styling including theme definitions
+└── script.js       # Core application logic (ES6 modules)
 ```
 
-### 2. Basic Controls
-- **Left Click**: Place a voxel
-- **Right Click**: Remove a voxel
-- **Shift + Left Click**: Draw a line of voxels
-- **Alt + Left Click (Drag)**: Select multiple voxels
-- **Arrow Keys**: Move selected voxels
-- **PageUp/PageDown**: Move selected voxels vertically
+## Installation
+### 1. Clone the repository:
+```bash
+git clone [https://github.com/AlirezaNoorizadeh/3D-web-voxel-editor.git]
+```
 
-### 3. UI Features
-- Color palette selection
-- Grid size adjustment (10-50)
-- Undo/Redo functionality
-- Import/Export options (JSON/OBJ)
+### 2. Running the Editor:
 
----
+#### Option 1: Using VS Code (Recommended)
+1. Install the [Live Server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
+2. Right-click on `index.html` in VS Code
+3. Select **"Open with Live Server"**
+4. The editor will automatically open in your default browser at `http://localhost:5500`
 
-## 🎯 Project Goal
-This editor demonstrates how to:
-- Create an interactive 3D environment with Three.js
-- Implement voxel placement and manipulation
-- Manage complex user interactions
-- Support undo/redo functionality
-- Handle multiple languages (English/Persian)
-- Implement light/dark mode
+#### Option 2: Using Python
+```bash
+# Python 3.x
+python -m http.server 8000
+```
+Then open your browser to:  
+`http://localhost:8000`
 
----
+#### Option 3: Using Node.js (http-server)
+```bash
+npx http-server
+```
+Access at:  
+`http://localhost:8080`
 
-## 📂 Project Structure
-The project consists of a single HTML file with embedded JavaScript and CSS, organized into logical sections:
-
-| Section                  | Description                                  |
-|--------------------------|----------------------------------------------|
-| **📁 HTML Structure**    | Contains the UI layout and controls         |
-| **📁 CSS Styles**        | All styling for the editor                 |
-| **📁 JavaScript**        | Core application logic                     |
-| - Three.js Setup        | Scene, camera, renderer initialization     |
-| - Voxel Management      | Placement, deletion, selection             |
-| - History System        | Undo/Redo functionality                    |
-| - UI Interactions       | Control panel and instruction handling      |
-| - Import/Export         | JSON and OBJ file handling                  |
 
 ---
 
-## 🔧 Key Features
+## 🌟 Core Features
 
-### Voxel Editing
-- Place and remove individual voxels
-- Draw continuous lines of voxels
-- Select multiple voxels for batch operations
-- Copy/Delete selected voxels
-- Clear the entire workspace
+### Editor Functionality
+- 🧊 Intuitive voxel placement/removal
+- ↔️ Adjustable grid size (10-50 units)
+- ⏮️ Robust undo/redo system (20 levels)
+- 🎨 Custom color palette management
 
-### UI Features
-- Bilingual support (English/Persian)
-- Light/Dark mode toggle
-- Collapsible control panels
-- Interactive color palette
-- Custom color addition
-- Grid size adjustment
+### UI Characteristics
+- 🌓 Dual theme support (dark/light modes)
+- 🌐 Bilingual interface (English/Persian)
+- 🖥️ Responsive control panels
 
-### Advanced Functionality
-- Undo/Redo stack (20 levels)
-- Bounds checking for voxel placement
-- Interactive preview of voxel placement
-- Keyboard shortcuts for common operations
+### Data Management
+- 💾 Export to OBJ + JSON formats
+- 📤 Import JSON voxel layouts
 
 ---
 
-## 🌐 Language Support
-The editor supports two languages:
-1. English (default)
-2. Persian/Farsi (فارسی)
+## 🛠️ Technical Implementation
 
-Toggle between languages using the language switch button in the controls panel.
+### Architecture
+- **Clean separation** of markup (HTML), presentation (CSS), and logic (JS)
+- **ES6 modules** for maintainable JavaScript
+- **Three.js** for 3D rendering (loaded via CDN)
 
----
-
-## 🎨 Color Management
-The editor provides:
-- 10 default colors
-- Custom color addition
-- Color palette persistence
-- Active color highlighting
+### Default Configuration
+- English language interface
+- Dark mode visual theme
+- Standard color palette pre-loaded
 
 ---
 
-## 📁 File Operations
+## 📂 File Breakdown
 
-### Export Options
-1. **JSON Export**:
-   - Saves voxel positions and colors
-   - Preserves grid size
-   - Can be re-imported later
-
-2. **OBJ Export**:
-   - Standard 3D model format
-   - Includes separate MTL file for materials
-   - Compatible with most 3D software
-
-### Import Options
-- **JSON Import**:
-  - Loads previously saved voxel layouts
-  - Adjusts grid size automatically
-  - Preserves all color information
+| File          | Contents                                |
+|---------------|-----------------------------------------|
+| `index.html`  | DOM structure + Three.js dependencies   |
+| `style.css`   | All visual styling including themes     |
+| `script.js`   | Application logic and event handlers    |
 
 ---
 
-## ⌨️ Keyboard Shortcuts
+## 🎨 Design Features
 
-| Shortcut          | Action                          |
-|-------------------|---------------------------------|
-| Arrow Keys        | Move selected voxels           |
-| PageUp/PageDown   | Move vertically                |
-| Ctrl/Cmd + Z      | Undo                          |
-| Ctrl/Cmd + Y      | Redo                          |
-| Escape            | Clear selection               |
-| Enter             | Confirm actions/close messages |
+### Theme System
+- Dark mode (default)
+- Light mode option
+- Theme-aware UI components
 
----
-
-## 🛠️ Technologies Used
-- **Three.js** for 3D rendering
-- **HTML5/CSS3** for UI
-- **JavaScript ES6** for application logic
-- **Tailwind CSS** for utility classes
-- **OrbitControls** for camera manipulation
+### Language Support
+- English (default)
+- Persian/Farsi
 
 ---
 
-## 📜 License [ [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE) ]
+## 🛠️ Technology Stack
+
+- **Three.js** (v0.160.0)
+- **Vanilla JavaScript** (ES6 modules)
+- **Modern CSS** (Flexbox, Grid)
+- **HTML5** (Semantic structure)
+
+---
+
+## 📜 License [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 This project is licensed under the MIT License.
 
 ---
 
-## 🙏 Acknowledgments
-Special thanks to:
-- The Three.js community for their excellent documentation
-- All contributors to the OrbitControls library
-- The developers of Tailwind CSS for their utility-first framework
+## 🙏 Credits
+
+Thanks to:
+- Three.js team for the powerful 3D engine
+- Open source contributors for OrbitControls
+- Web standards communities for ES6/CSS3
 
 ---
 
-This voxel editor provides a simple yet powerful interface for creating 3D voxel art directly in the browser, with features that rival many desktop applications. The clean implementation demonstrates how to build complex interactive 3D applications using modern web technologies.
+> The editor provides professional-grade voxel modeling capabilities in a clean, modular web implementation with sensible defaults for immediate productivity.
