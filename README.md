@@ -9,9 +9,10 @@ A modular 3D voxel modeling tool built with Three.js, featuring a clean separati
 ### Project Structure
 ```
 voxel-editor/
-├── index.html      # Main application structure
-├── style.css       # All styling including theme definitions
-└── script.js       # Core application logic (ES6 modules)
+├── index.html          # Main application structure (modular version)
+├── style.css           # All styling including theme definitions
+├── script.js           # Core application logic (ES6 modules)
+└── voxel-editor.html   # All-in-one standalone version (contains inline CSS/JS)
 ```
 
 ## Installation
@@ -22,27 +23,38 @@ git clone [https://github.com/AlirezaNoorizadeh/3D-web-voxel-editor.git]
 
 ### 2. Running the Editor:
 
+#### 🔘 For Modular Version (`index.html`):
 #### Option 1: Using VS Code (Recommended)
 1. Install the [Live Server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
 2. Right-click on `index.html` in VS Code
 3. Select **"Open with Live Server"**
-4. The editor will automatically open in your default browser at `http://localhost:5500`
+4. The editor will automatically open at `http://localhost:5500`
 
 #### Option 2: Using Python
 ```bash
 # Python 3.x
 python -m http.server 8000
 ```
-Then open your browser to:  
-`http://localhost:8000`
+Then open: `http://localhost:8000`
 
 #### Option 3: Using Node.js (http-server)
 ```bash
 npx http-server
 ```
-Access at:  
-`http://localhost:8080`
+Access at: `http://localhost:8080`
 
+#### 🔘 For Standalone Version (`voxel-editor.html`):
+#### Option A: Direct File Access (Simplest)
+1. Double-click the file in your file explorer
+2. Opens directly in browser (file:// protocol)
+
+##### Option B: With Local Server (Recommended for advanced features)
+Use any of the above server methods - the file works the same way as `index.html` but has no external dependencies
+
+##### Key Differences:
+- No need for a server for basic functionality
+- All assets are self-contained
+- Perfect for offline use or quick sharing
 
 ---
 
@@ -79,14 +91,32 @@ Access at:
 
 ---
 
-## 📂 File Breakdown
+## 📂 File Breakdown  
 
-| File          | Contents                                |
-|---------------|-----------------------------------------|
-| `index.html`  | DOM structure + Three.js dependencies   |
-| `style.css`   | All visual styling including themes     |
-| `script.js`   | Application logic and event handlers    |
+| File                 | Contents                                | Usage Notes                          |
+|----------------------|-----------------------------------------|--------------------------------------|
+| `index.html`         | DOM structure + Three.js dependencies   | Modular version (requires server)    |
+| `style.css`          | All visual styling including themes     | Shared by both versions              |
+| `script.js`          | Application logic (ES6 modules)         | Modular version only                 |
+| `voxel-editor.html`  | **All-in-one standalone version**       | Contains:                            |
+|                      | • Inlined DOM structure                 | • Double-click to run                |
+|                      | • Embedded CSS styles                   | • No server required                 |
+|                      | • Bundled JS logic                      | • Portable/offline-friendly         |
 
+---
+
+### Key Differences:
+- **Modular Version** (`index.html` + `script.js` + `style.css`):
+  - Better for development
+  - Requires local server
+  - Supports hot-reloading
+
+- **Standalone Version** (`voxel-editor.html`):
+  - Single executable file
+  - Zero dependencies
+  - Ideal for sharing/distribution
+
+> 💡 **Tip**: Use the modular version for development and generate the standalone version for releases/deployment.
 ---
 
 ## 🎨 Design Features
